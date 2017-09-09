@@ -1,0 +1,12 @@
+
+<ul>
+    <% if(!user){ %>
+        <li><a href="/login">LogIn</a></li>
+        <li><a href="/register">Register</a></li>
+        <% } %>
+  
+    <% if(user){ %>
+        <li><a href="/login">Welcome <%= user.name %></a></li>
+        <li><a href="/logout">LogOut</a></li>
+        <% } %>
+</ul>

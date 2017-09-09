@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  
+    <nav>
+      <!-- nav temp  -->
+      <% include layout %>
+    </nav>
+   
+    <div class="container">
+     <h1>Node.js, Express.js, Mongoose.js and Passport.js</h1>
+     <p>User Authentication Example</p>
+   </div>
+
   </body>
-  <script src="/socket.io/socket.io.js"></script>
+  <!-- <script src="/socket.io/socket.io.js"></script> -->
   <script>
     /* var socket_url = "http://localhost:3000":
     var socket = io(socket_url);   */

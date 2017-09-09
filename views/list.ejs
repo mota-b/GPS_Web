@@ -7,21 +7,22 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-    <form>
-        <input id ="id" type="" name="" value="">
+    <form action="/insert" method="post">
+        <input id ="id" type="" name="userName" value="">
         <br>
-        <input id ="mdp" type="" name="" value="">
+        <input id ="mdp" type="" name="passWord" value="">
         <br>
-        <input id ="btn" type="button" value="add"/>
+        <input id ="btn" type="submit" value="add"/>
     </form>
         list
         <ul>
         </ul>
+        <%= items %>
     </body>
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-     var socket_url = "http://localhost:3000";
+     /* var socket_url = "http://localhost:3000";
      var socket = io(socket_url);
      $("#btn").on("click",function(){
         if($("#id").val()!="" && $("#mdp").val()!="" ){
@@ -52,6 +53,6 @@
              socket.emit("dell",$(this).parent().children(".id").text() )
              console.log($(this).parent().children(".id").text())
          })
-     })  
+     })   */
     </script>
 </html>
