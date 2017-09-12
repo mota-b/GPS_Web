@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="/stylesheets/admin.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="c">
+            <div class="r" id="r1">
+                    <h3>Page of ADMIN: <%= user.pseudo %></h3>        
+            </div>
+
+            <div class="r" id="r2">
+                <div  id="insert">
+                    <h4>Insert Data</h4>
+                    <hr width="100%" color="">
+                    <form >
+                        <label for="name">Name</label><br>
+                        <input type="text" name="name" id="name"><br>
+                        <label for="username">Username</label><br>
+                        <input type="text" name="username" id="username"><br>
+                        <label for="password">Password</label><br>
+                        <input type="password" name="password" id="password"><br><br>
+                        <input type="button" name="username" id="username" value="Insert"><br>
+                        
+                    </form>
+                    
+                </div>
+                <div  id="get">
+                        <h4>Get Data</h4>
+                        <hr width="100%" color="blue">
+                        <a href="#">Load</a>
+                </div>
+                <div  id="update">
+                        <h4>Update Data</h4>
+                        <hr width="100%" color="blue">
+                        <form >
+                            <label for="id">Id</label><br>
+                            <input type="id" name="id" id="id"><br>  
+                            <label for="name">Name</label><br>
+                            <input type="text" name="name" id="name"><br>
+                            <label for="username">Username</label><br>
+                            <input type="text" name="username" id="username"><br><br>
+                            <input type="button" name="username" id="username" value="Insert"><br>
+                            
+                        </form>
+                </div>
+                <div  id="dell">
+                        <h4>Dellete Data</h4>
+                        <hr width="100%" color="blue">
+                        <form >
+                            <label for="id">Id</label><br>
+                            <input type="id" name="id" id="id"><br><br>
+                            <input type="button" name="username" id="username" value="Insert"><br>
+                                      
+                        </form>
+                </div>
+            </div>
+        </div>   
+            
+    </body>
+</html>

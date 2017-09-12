@@ -16,17 +16,20 @@ var LocalStrategy = require('passport-local').Strategy;
  * Mongoose Data Base
  */
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/node-auth')
-  .then(() =>  console.log('connection succesful'))
+var db_url = require('./urls').db;
+mongoose.connect(db_url, { useMongoClient: true })
+  .then(() =>  console.log('-- Connection succesful to db: <<', db_url.split('/')[3], '>>'))
   .catch((err) => console.error(err));
-
 
 /**
  * Routers declaration
  */ 
 var index = require('./routes/index');
-var users = require('./routes/users');
-
+var register = require('./routes/register');
+var login = require('./routes/login');
+var admin = require('./routes/admin');
+var user = require('./routes/user');
+var dataBase = require('./routes/dataBase');
 /**
  * Express Parameters
  */ 
@@ -49,7 +52,6 @@ app.use(require('express-session')({
     saveUninitialized: false
 }));
 
-
 /**
  * Passport
  */
@@ -61,7 +63,11 @@ app.use(express.static(path.join(__dirname, 'public')));
  * Routers init
  */
 app.use('/', index);
-app.use('/users', users);
+app.use('/register', register);
+app.use('/login', login);
+app.use('/admin', admin);
+app.use('/user', user);
+app.use('/dataBase', dataBase);
 
 /**
  * Passport Config
@@ -70,6 +76,7 @@ var User = require('./models/User');
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
 
 
 // catch 404 and forward to error handler

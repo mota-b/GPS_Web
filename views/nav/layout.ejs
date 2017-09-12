@@ -1,0 +1,21 @@
+
+<ul>
+    <% if(!user){ %>
+        <li><a href="/login">LogIn</a></li>
+        <li><a href="/register">Register</a></li>
+        <% } %>
+  
+    <% if(user){ %>
+        <li><a href="/">Welcome <%= user.pseudo %></a></li>
+        
+        <% if(user.isAdmin){ %>
+            <li><a href="/admin">AdminPage</a></li>
+            <li><a href="/user">MyPage</a></li>
+            <% } %>
+        <% if(!user.isAdmin){ %>
+            <li><a href="/user">MyPage</a></li>
+            <% } %>    
+        
+            <li><a href="/logout">LogOut</a></li>
+        <% } %>
+</ul>

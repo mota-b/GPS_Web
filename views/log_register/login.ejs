@@ -23,31 +23,15 @@
                             
                     <div class="col-xs-10 ">
                         <!-- nav temp  -->
-                        <% include layout %>
+                        <% include ../nav/layout %>
                     </div>
                 </section>
 
                       
                 <section class="row" id="section2">
                     <center><h1> Global Position System </h1></center>
-                    
-                    <form role='form', action='/login', method='post'>
-                        <div class="input-group col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input class="form-control username" type='text' name='username' id='inputEmail' placeholder='Username' required autofocus>
-                        </div>
-                    </br>
-                        <div class="input-group col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input class="form-control password" type='password' name='password' id='inputPassword' placeholder='Password'>
-                        </div>
-                        
-                        <div class="checkbox col-xs-offset-1 col-md-offset-4">
-                            <label><input id="remember" type="checkbox"> Remember me</label>
-                        </div>
-                        
-                        <button class="btn btn-default col-xs-offset-1 col-md-offset-4" type="submit" >   LogIn   </button>
-                    </form>
+                    <!-- Login form  -->
+                    <% include ../forms/login_form %>
                     
                 </section>
                 

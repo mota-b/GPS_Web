@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="/stylesheets/admin.css" rel="stylesheet">
+
+</head>
+<body>
+    <div id="topBar">
+        <nav>
+            <!-- nav temp  -->
+            <% include ../nav/layout %>
+        </nav>
+    </div>
+
+    <div id="board">
+        <span id="socities_bloc">
+            <ul id="socities">
+                <li id="add_socity" class="cicle_item add" title="add a socity" onclick="document.getElementById('socity_model').style.display='block'" ></li>
+                <hr>
+            </ul>
+            <hr id="bottom_socities">
+        </span>
+        
+        <span id="employee_bloc">
+            
+            <ul id="managers">
+                
+                <div class="item" >
+                        <li id="add_manager" class="cicle_item add" title="add a manager" onclick="document.getElementById('manager_model').style.display='block'" ></li>
+                        
+                </div>
+                <hr class="manager_worker_hr">
+                <hr class="manager_worker_hr">
+                
+                 
+            </ul>
+            
+            <ul id="workers">
+                <div class="item">
+                    <li id="add_worker" class="cicle_item add" title="add a worker" onclick="document.getElementById('worker_model').style.display='block'" ></li>
+                    
+                </div>
+                <hr class="manager_worker_hr">
+                <hr class="manager_worker_hr">
+            </ul>
+        </span>
+        <span id="c"></span>
+    </div>
+
+
+     <!-- The Modals -->
+    <div id="socity_model" class="modal">
+        <!-- Add socity form  -->
+        <% include ../forms/add_socity %>
+    </div>
+
+    <div id="manager_model" class="modal">
+        <!-- Add manager form  -->
+        <% include ../forms/add_manager %>
+    </div>
+
+    <div id="worker_model" class="modal">
+        <!-- Add worker form  -->
+        <% include ../forms/add_worker %>
+    </div>
+       
+</body>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+    /**
+     * Models 
+     */
+
+    // Get the modal
+    var socity_model = document.getElementById('socity_model');
+    var manager_model = document.getElementById('manager_model');
+    var worker_model = document.getElementById('worker_model');
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == socity_model) {
+            socity_model.style.display = "none";
+        }
+        if (event.target == manager_model) {
+            manager_model.style.display = "none";
+        }
+        if (event.target == worker_model) {
+            worker_model.style.display = "none";
+        }
+    }
+</script>
+
+<script>
+    /**
+     * Display Data 
+     */
+
+    // Display socity data
+    var display_socity_data = function(socity){
+        
+    }
+
+    // Display admin data
+    var display_admin_data = $.get("<%= site %>/dataBase/get_socities?id=<%= user._id %>&format=json", function(socities){
+        socities.forEach(function(socity) {
+            /* Display socity item */
+            $("#socities").append(
+                $("<li>")
+                    .attr({
+                        'class':'cicle_item socity unselected_socity',
+                        'title': socity.name,
+                        'id':socity._id
+                        })
+                    .click(function(){
+                        if($(this).attr("class") == "cicle_item socity unselected_socity"){
+                            /* Unselect all items */
+                            $(this).parent().find(".selected_socity").attr({'class': "cicle_item socity unselected_socity"})
+                            $("#employee_bloc").css({'background-color': '#57579D'})
+                            /* Select curent item */
+                            $(this).attr({'class': "cicle_item socity selected_socity"});
+                            $("input[name=manager_socity]").val(socity._id);
+                            
+                            /* Display Socity data */
+                            display_socity_data(socity);
+                        }
+                        else{
+                            /* Unselect curent item */
+                            $(this).attr({'class': "cicle_item socity unselected_socity"})
+                            $("#employee_bloc").css({'background-color': '#323339'})
+                            $("input[name=manager_socity]").val("");
+                        }
+                    })
+            )
+        });
+    });
+
+
+    display_admin_data;
+
+</script>
+
+</html>

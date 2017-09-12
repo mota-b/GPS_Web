@@ -1,0 +1,31 @@
+<form class="modal-content animate" role='form'  action="/dataBase/add_manager" method="post">
+    <center><h1>Create a new socity</h1></center>
+
+    <div class="input-group col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+        <label for="">Manager</label>
+        <input class="form-control" type='text' name="manager_pseudo" id="manager_pseudo" placeholder='Manager Pseudo' >
+    </div>
+    
+    </br>
+
+    <div class="input-group col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+        <input class="form-control" type='text' name="manager_username" placeholder='Manager Username' required>
+    </div>
+    
+    </br>
+    
+    <div class="input-group col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+        <input class="form-control" type='password' name="manager_password" placeholder='Manager Password' required>
+    </div>
+    
+    </br>
+
+    <div class="input-group col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+        <label for="">Manager</label>
+        <input class="form-control" type='text' id="manager_socity" name="manager_socity" placeholder='Manager Socity' required readonly>
+    </div>
+    
+    </br>
+
+    <button class="btn btn-default col-xs-offset-1 col-md-offset-4 submit" type='submit' >   Submit   </button>
+</form>

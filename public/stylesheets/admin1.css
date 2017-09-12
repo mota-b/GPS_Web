@@ -1,0 +1,54 @@
+*, h3{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  
+}
+
+.c{
+  height: 100vh;
+  width: 100vw;
+}
+
+.r{
+  width: 100vw;
+  background-color: #F4F4F4;
+}
+.r div{
+  display: inline-block;
+  height: 100%;
+  width: 23vw;
+  margin-left: 5px;
+  padding: 4px;
+  color: black;
+}
+
+#r1{
+  height: 10vh;
+}
+#r2{
+  height: 109vh;
+}
+
+#insert{
+  background-color: #42AC42;
+}
+#get{
+  background-color: #9DA19D;
+}
+#update{
+  background-color: #3446A2;
+}
+#dell{
+  background-color: #BC181A;
+}
+
+h3{
+  padding-top: 2%;
+  padding-left: 2%;
+}

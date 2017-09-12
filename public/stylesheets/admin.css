@@ -1,0 +1,246 @@
+
+/**
+ * General 
+ */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+body {
+    height: 97vh;
+    width: 100vw;
+}
+
+span{
+    height: 100%;
+    display: inline-block;
+}
+
+.invisible{
+    display: none;
+}
+
+hr{
+    width: 80%;
+    color: grey;
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
+
+/**
+ * Body 
+ */
+#topBar{
+    height: 5vh;
+    min-height: 35px;
+    min-width: 458px;
+    width: 99vw;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    background-color:#242629;
+    
+}
+#board{
+    height: 94vh;
+    width: 99vw;
+    min-width: 402px;
+    margin-left: 2px;
+}
+
+/**
+ * navBar TopBar 
+ */
+nav ul{
+    float: right;
+    display: inline;
+    list-style: none;
+    margin-right: 20px;
+    position: relative;
+}
+ul li {
+    float: right;
+    display: inline;
+    margin-left: 20px;
+    
+}
+ul li a{
+    text-decoration: none;
+    font-size: 18px;
+    color: #867A7A;
+    font-weight: 400;
+    
+}
+ul li a:hover{
+    color: #D4CBCB;
+    font-weight: 400;
+    border-bottom: solid #EEEEEE ;  
+}
+
+
+/**
+ * Boar
+ */
+#socities_bloc{
+    width: 5%;
+    min-width: 56px;
+    max-width: 56px;
+    margin-left: 2px;
+    background-color:#242629;
+}
+#employee_bloc{
+    width: 30%;
+    min-width: 335px;
+    max-width: 335px;
+    background-color:#323339;
+}
+#c{
+    width: 64%;
+    min-width: 946px;
+    
+    background-color:#393b41;
+}
+
+   
+/**
+ * socities_bloc
+ */
+
+#socities{
+    margin-top: 6px;
+}
+.cicle_item{
+    display: list-item;
+    margin-left: 10px;
+    float: left;
+    height: 35px;
+    width: 35px;
+    list-style-type: none; 
+    border-radius: 200px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+ }
+
+.cicle_item:hover {
+    cursor: pointer;
+}
+.add{
+    background-image: url("/images/add.png");
+    background-color: #57579D;
+    background-size: cover;
+    border: 2px dotted #8D8B8B;
+}
+.add:hover {
+    border: 2px dotted #E3DEDE;
+    background-color: #7070BB;
+}
+.socity{
+    background-image: url("/images/group.png");
+    background-color: #323339;
+    background-size: cover;
+    border: 1px solid #8D8B8B;    
+}
+.socity:hover{
+    background-image: url("/images/group.png");
+    background-color: #57579D;
+    background-size: cover;
+    border: 2px solid #8D8B8B;    
+}
+.selected_socity{
+    background-color: #57579D;
+}
+
+/**
+ * employee_bloc
+ */    
+
+.item{
+    width: 100%;
+    height: 35px;
+    display: block;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#add_manager,#add_worker{
+    float: right;
+    margin: 0;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.manager_worker_hr{
+    display: block;
+    margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Modal Forms 
+ */
+
+/* Add padding to container elements */
+.container {
+    padding: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.submit{
+    margin-bottom: 30px;
+}

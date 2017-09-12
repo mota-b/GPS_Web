@@ -2,10 +2,8 @@ var express = require('express');
 var router = express.Router();
 var auth = require("../controllers/AuthController.js");
 
-// restrict index for logged in user only
-router.get('/', auth.home);
 
-// route for logout action
-router.get('/logout', auth.logout);
+/* GET users listing. */
+router.get('/', auth.myPage);
 
 module.exports = router;
