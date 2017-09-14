@@ -11,4 +11,11 @@ router.post('/add_manager', db.add_manager);
 // get socities
 router.get('/get_socities', db.get_socities);
 
+// get socities
+router.get('/get_managers', db.get_managers);
+
+// dell user
+router.post('/dell_user', db.dell_user);
+
+
 module.exports = router;

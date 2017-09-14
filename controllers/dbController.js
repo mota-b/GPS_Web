@@ -33,7 +33,11 @@ module.exports = {
 
         //Link the admin to the socity
         User.findById(data.admin, function(err, admin){
-            if(err) throw err;
+            if (err) {
+                console.log("find errr");
+                console.log(err);
+                res.redirect("/admin");
+            }
             
             admin.socities.push(data._id);
             admin.save();
@@ -57,16 +61,19 @@ module.exports = {
 
         User.register(manager, req.body.manager_password, function(err, user) {
             if (err) {
-              console.log("register errr")
-                throw err;
-
+                console.log("register errr");
+                console.log(err);
+                res.redirect("/admin");
             }
         });
         manager.save();
 
         //Link the Socity to the Manager
         Socity.findById(req.body.manager_socity, function(err, socity){
-            if(err) {console.log(" find sociity err");res.redirect("/admin");}
+            if(err) {
+                console.log(" find sociity err");
+                res.redirect("/admin");
+            }
             
             socity.managers.push(manager._id);
             socity.save();
@@ -79,12 +86,50 @@ module.exports = {
     get_socities: function (req, res) {
         
         Socity.find({admin: req.query.id},function(err, socities){
-            if(err) throw err;
+            if (err) {
+                console.log("find errr");
+                console.log(err);
+                res.json([]);
+            }
             res.json( socities );
         });
     },
 
-    
+    // Get Managers
+    get_managers: function (req, res) {
+        User.find({socities: [req.query.id]},function(err, managers){
+            if (err) {
+                console.log("find errr");
+                console.log(err);
+                res.json([]);
+            }
+            res.json( managers );
+        });
+    },
+
+    // Get Managers
+    dell_user: function (req, res) {
+        /* Dellete links between the user and his socity */
+        Socity.find({managers: req.query.id},function(err, socities){
+            if (err) {
+                console.log("find errr");
+                console.log(err);
+            }
+            else{
+                socities.forEach(function(socity) {
+                    var i = socity.managers.indexOf(req.query.id);
+                    socity.managers.splice(i, 1);
+                    socity.save();
+                }) 
+            }
+        });
+        
+        /** Dellete the user */
+        User.findByIdAndRemove(req.query.id).exec();
+        
+        res.redirect('/admin');
+    },
+
     // get
     findById: function (req, res, id) {
         var u;

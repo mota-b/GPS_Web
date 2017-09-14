@@ -30,26 +30,27 @@
         
         <span id="employee_bloc">
             
-            <ul id="managers">
+            <!-- <ul id="managers">
                 
                 <div class="item" >
+                        
                         <li id="add_manager" class="cicle_item add" title="add a manager" onclick="document.getElementById('manager_model').style.display='block'" ></li>
                         
                 </div>
-                <hr class="manager_worker_hr">
-                <hr class="manager_worker_hr">
-                
+                <div  id="manager_top_hr" class="item" >
+                        <hr class="manager_worker_hr">         
+                </div>
                  
             </ul>
             
             <ul id="workers">
                 <div class="item">
-                    <li id="add_worker" class="cicle_item add" title="add a worker" onclick="document.getElementById('worker_model').style.display='block'" ></li>
-                    
+                    <li id="add_worker" class="cicle_item add" title="add a worker" onclick="document.getElementById('worker_model').style.display='block'" ></li> 
                 </div>
-                <hr class="manager_worker_hr">
-                <hr class="manager_worker_hr">
-            </ul>
+                <div id="worker_top_hr" class="item" >
+                        <hr  class="manager_worker_hr">         
+                </div>
+            </ul> -->
         </span>
         <span id="c"></span>
     </div>
@@ -72,6 +73,7 @@
     </div>
        
 </body>
+
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -107,10 +109,113 @@
      * Display Data 
      */
 
+
     // Display socity data
-    var display_socity_data = function(socity){
-        
+     var display_socity_schema = function(socity_name){
+        $("#employee_bloc")
+                                .append(
+                                    $("<ul>")
+                                        .attr({"id":"managers_head"})
+                                        .append(
+                                            $("<div>")
+                                                .attr({"class": "item"})
+                                                .append($("<li>").text(socity_name).attr({"class":"socity_name"}))         
+                                        )
+                                        .append(
+                                            $("<div>")
+                                                .attr({"class": "item"})
+                                                .append($("<li>").text("Managers").attr({"class":"manager_title"}))
+                                                .append(
+                                                    $("<li>")
+                                                        .attr({"id": "add_manager", "class": "cicle_item add", "title": "add a manager", "onclick": "document.getElementById('manager_model').style.display='block'" })
+                                                )
+                                        )
+                                )
+                                
+                                .append(
+                                    $("<ul>")
+                                        .attr({"id":"managers"})
+                                        .append(
+                                            $("<div>")
+                                                .attr({"class": "item manager_top_hr"})
+                                                .append(
+                                                    $("<hr>")
+                                                        .attr({"class": "manager_worker_hr"})
+                                               )                
+                                        )           
+                                )
+
+
+                                .append(
+                                    $("<ul>")
+                                        .attr({"id":"workers_head"})
+                                        .append(
+                                            $("<div>")
+                                                .attr({"class": "item"})
+                                                .append($("<li>").text("Workers").attr({"class":"manager_title"}))
+                                                .append(
+                                                    $("<li>")
+                                                        .attr({"id": "add_worker", "class": "cicle_item add", "title": "add a worker", "onclick": "document.getElementById('worker_model').style.display='block'" })
+                                                )
+                                        )
+                                        
+                                )
+                                
+
+
+                                .append(
+                                    $("<ul>")
+                                        .attr({"id":"workers"})
+                                        .append(
+                                            $("<div>")
+                                                .attr({"class": "item manager_top_hr"})
+                                                .append(
+                                                    $("<hr>")
+                                                        .attr({"class": "manager_worker_hr"})
+                                                )                
+                                        )
+                                )
+     }
+
+    // Display socity data
+    var display_socity_data = function(id){
+        // Display Managers
+        var display_manager = $.get("<%= site %>/dataBase/get_managers?id="+ id+ "&format=json", function(managers){
+            console.log(managers)
+            managers.forEach(function(manager) {
+                /* Display socity item */
+                $("#managers").append(
+                    
+                    $("<div>").attr({
+                            'class':'item',
+                            })
+                        .append(
+                            $("<li>")
+                                .attr({
+                                    'class':'cicle_item manager manager unselected_manager',
+                                    'title': manager.pseudo,
+                                    'id':manager._id
+                                })
+                        )
+                        .append($("<li>").text(manager.pseudo).attr({"class":"manager_pseudo"}))   
+                )
+            })
+            
+            $("#managers").append(
+                $("<div>").attr({
+                        'class':'item manager_top_hr',
+                        }).append(
+                            $("<hr>").attr({
+                                'class':'manager_worker_hr',
+                                })
+                        )
+            )
+                    
+        })
+
+        display_manager;
     }
+
 
     // Display admin data
     var display_admin_data = $.get("<%= site %>/dataBase/get_socities?id=<%= user._id %>&format=json", function(socities){
@@ -125,6 +230,8 @@
                         })
                     .click(function(){
                         if($(this).attr("class") == "cicle_item socity unselected_socity"){
+                            /* Clear the area */
+                            $("#employee_bloc").html("");
                             /* Unselect all items */
                             $(this).parent().find(".selected_socity").attr({'class': "cicle_item socity unselected_socity"})
                             $("#employee_bloc").css({'background-color': '#57579D'})
@@ -132,14 +239,18 @@
                             $(this).attr({'class': "cicle_item socity selected_socity"});
                             $("input[name=manager_socity]").val(socity._id);
                             
+                            /* Display Socity Schema */
+                            display_socity_schema(socity.name);
+
                             /* Display Socity data */
-                            display_socity_data(socity);
+                            display_socity_data(socity._id);
                         }
                         else{
                             /* Unselect curent item */
                             $(this).attr({'class': "cicle_item socity unselected_socity"})
                             $("#employee_bloc").css({'background-color': '#323339'})
                             $("input[name=manager_socity]").val("");
+                            $("#employee_bloc").html("");
                         }
                     })
             )
