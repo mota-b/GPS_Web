@@ -75,7 +75,7 @@ module.exports = {
         if(err) throw err; 
         
         if(doc.isAdmin)
-          res.render('profile/admin0', { user : req.user, site: site_url});
+          res.render('profile/admin', { user : req.user, site: site_url});
         else
           res.redirect('/user');
       });

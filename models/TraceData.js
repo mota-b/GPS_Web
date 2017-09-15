@@ -19,10 +19,7 @@ var TraceDataSchema = new Schema({
             altitude: String
         }]
     }],
-    
-    //not required
-    adress: String
-    
+       
 });
 
 //TraceDataSchema.plugin(passportLocalMongoose);

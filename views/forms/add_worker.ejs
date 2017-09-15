@@ -1,0 +1,31 @@
+<form class="modal-content animate" role='form'  action="/dataBase/add_worker" method="post">
+    <center><h1>Create a new Worker</h1></center>
+
+    <div class="input-group col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+        <label for="">Worker</label>
+        <input class="form-control" type='text' name="firstName" id="firstName" placeholder='First Name' >
+    </div>
+    
+    </br>
+
+    <div class="input-group col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+        <input class="form-control" type='text' name="lastName" id="lastName" placeholder='Last Name' >
+    </div>
+    
+    </br>
+
+    <div class="input-group col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+        <input class="form-control" type='text' name="worker_address" placeholder='Worker Address'>
+    </div>
+    
+    </br>
+
+    <div class="input-group col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+        <label for="">Socity</label>
+        <input class="form-control" type='text' id="worker_socity" name="worker_socity" placeholder='Worker Socity' required readonly>
+    </div>
+    
+    </br>
+
+    <button class="btn btn-default col-xs-offset-1 col-md-offset-4 submit" type='submit' >   Submit   </button>
+</form>
