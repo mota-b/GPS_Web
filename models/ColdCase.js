@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var passportLocalMongoose = require('passport-local-mongoose');
+
 
 var ColdCaseSchema = new Schema({
     //required
@@ -26,6 +26,6 @@ var ColdCaseSchema = new Schema({
     } 
 });
 
-//ColdCaseSchema.plugin(passportLocalMongoose);
+
 
 module.exports = mongoose.model('ColdCase', ColdCaseSchema);

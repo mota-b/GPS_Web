@@ -1,4 +1,6 @@
-var url = window.location.protocol + "//" + window.location.host
+
+console.log("hi")
+/* var url = window.location.protocol + "//" + window.location.host
 console.log(url)
 // register
 function registerUser() {
@@ -53,7 +55,7 @@ function getUser() {
     });
 }
 
-
+ */
 
 /*function registerUser() {
      var username = document.getElementsByClassName("username");

@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var passportLocalMongoose = require('passport-local-mongoose');
+
 
 
 var WorkerSchema = new Schema({
@@ -11,10 +11,10 @@ var WorkerSchema = new Schema({
     traceData: String,
     
     //not required
-    adress: String
+    address: String
     
 });
 
-//WorkerSchema.plugin(passportLocalMongoose);
+
 
 module.exports = mongoose.model('Worker', WorkerSchema);

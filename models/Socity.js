@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var passportLocalMongoose = require('passport-local-mongoose');
+
 
 var SocitySchema = new Schema({
     //required
@@ -10,10 +10,9 @@ var SocitySchema = new Schema({
     workers: [String],
     
     //not required
-    adress: String
+    address: String
     
 });
 
-//SocitySchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('Socity', SocitySchema);

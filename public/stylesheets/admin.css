@@ -224,6 +224,105 @@ hr{
 /**
  * detail
  */
+.detail_head{
+    display: none;
+    height: 50vh;
+    min-height: 348px;
+    margin-top: 5%;
+    overflow: auto;
+    background-color: #73739a;
+}
+.detail_head .row{
+    height: 100%;
+}
+.detail_img{
+    height: 100%;
+    background-color: #42425f;
+}
+.detail_img .circle_item{
+    height: 130px;
+    width: 130px;
+    margin-top: 20%;
+    background-image: url("/images/user.png");
+    background-color: #57579D;
+    background-size: cover;
+    border-right: 3px solid  #fffcfc;
+    border-bottom: 3px solid  #0066ff;
+    box-shadow: -3px 3px black;
+}
+.detail_img li{
+    font-size: 22px;
+    font-weight: 400;
+    font-style: italic;
+    list-style: none;
+    color: snow;
+}
+
+.detail_db{
+    height: 100%;
+    background-color: #b2b2bd;
+}
+
+#manager_detail_edit{
+    height: 35px;
+    background-color: green;
+    margin-top: 20px;
+}
+
+#manager_detail_info{
+    height: 218px;
+    background-color: green;
+    margin-top: 20px;
+}
+
+#manager_detail_qr{
+    height: 35px;
+    background-color: green;
+    margin-top: 20px;
+}
+
+.edit_det{
+    height: 25px;
+    width: 25px;
+    list-style-type: none; 
+    border-radius: 200px;
+    margin-top: 0px;
+
+    background-image: url("/images/edit.png");
+    background-color: #57579d;
+    background-size: cover;
+    /* border: 1px solid #8D8B8B; */
+    float: right;
+}
+.edit_det:hover{
+    cursor: pointer;
+    background-color: #7272B9;
+    background-size: cover;
+    border: 1px solid #8D8B8B;
+}
+
+.detail_db form{
+    height: 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+#qr_code:hover{
+    cursor: pointer;
+
+}
+#big_qr_code{
+    width: 659px;
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -286,7 +385,7 @@ hr{
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 2; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -307,5 +406,4 @@ hr{
 
 .submit{
     margin-bottom: 30px;
-    
 }

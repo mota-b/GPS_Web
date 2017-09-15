@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var passportLocalMongoose = require('passport-local-mongoose');
+
 
 var TraceDataSchema = new Schema({
     //required
@@ -22,6 +22,6 @@ var TraceDataSchema = new Schema({
        
 });
 
-//TraceDataSchema.plugin(passportLocalMongoose);
+
 
 module.exports = mongoose.model('TraceData', TraceDataSchema);

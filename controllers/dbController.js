@@ -70,6 +70,7 @@ module.exports = {
         var socity = {
             name: req.body.socity_name,
             admin: req.body.socity_admin,
+            address:req.body.address,
             managers: [],
             workers: [],
 
@@ -147,7 +148,7 @@ module.exports = {
             socity: req.body.worker_socity,
             traceData: new_traceData._id,
             
-            adress: req.body.worker_address
+            address: req.body.worker_address
         }
         var worker = new Worker(worker_temp);
         worker.save();

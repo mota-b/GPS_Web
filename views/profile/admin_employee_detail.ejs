@@ -1,0 +1,94 @@
+<div class="col-xs-10 col-xs-offset-1 detail_head">
+   <div class="row">
+       <div class="col-xs-4 detail_img">
+           <center><li class="circle_item"></li></center>
+           <center><li class="name_img">Hakim</li> <li class="edit_det" title="Edit"></li> </center>
+           <hr>
+           <div><center id="qr_code"></center></div>
+       </div>
+       <div class="col-xs-8 detail_db">
+           <div class="row">
+               <!-- Manager form  -->
+                <form id="manager_detail"  role='form'  action="/dataBase/update_manager" method="post">
+                    
+
+                    <div class="input-group input-group-sm col-xs-10 col-xs-offset-1">
+                        <span class="input-group-addon" id="sizing-addon3">Username</span>
+                        <input type="text" class="form-control" name="username" placeholder="Username" aria-describedby="sizing-addon3" required readonly>
+                    </div>
+
+                    <div class="input-group input-group-sm col-xs-10 col-xs-offset-1">
+                        <span class="input-group-addon" id="sizing-addon3">Pseudo</span>
+                        <input type="text" class="form-control" name="pseudo" placeholder="Pseudo" aria-describedby="sizing-addon3" required readonly>
+                    </div>
+                    
+                    <br>
+
+                    <div class="input-group input-group-sm col-xs-10 col-xs-offset-1">
+                        <span class="input-group-addon" id="sizing-addon3">User ID</span>
+                        <input type="text" class="form-control" name="user_id" placeholder="User ID" aria-describedby="sizing-addon3" required readonly>
+                    </div>
+
+                    <div class="input-group input-group-sm col-xs-10 col-xs-offset-1">
+                        <span class="input-group-addon" id="sizing-addon3">Socity ID</span>
+                        <input type="text" class="form-control" name="socity_id" placeholder="Socity ID" aria-describedby="sizing-addon3" required readonly>
+                    </div>
+
+                    <div class="input-group input-group-sm col-xs-10 col-xs-offset-1 checkbox">
+                        <label><input type="checkbox" name="remember"> Change Password</label>
+                    </div>
+
+                    <div class="input-group input-group-sm col-xs-10 col-xs-offset-1">
+                        <span class="input-group-addon" id="sizing-addon3">Password</span>
+                        <input type="password" class="form-control" name="password" placeholder="Password" aria-describedby="sizing-addon3" required readonly>
+                    </div>
+
+                    <div class="input-group input-group-sm col-xs-10 col-xs-offset-1">
+                        <span class="input-group-addon" id="sizing-addon3">Confirmation</span>
+                        <input type="password" class="form-control" name="c_password" placeholder="Confirmation" aria-describedby="sizing-addon3" required readonly>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-default col-xs-10 col-xs-offset-1 ">Save</button>
+                </form>
+
+                <!-- Worker form -->
+                <form id="worker_detail"  role='form'  action="/dataBase/update_worker" method="post">
+                    
+
+                    <div class="input-group input-group-sm col-xs-10 col-xs-offset-1">
+                        <span class="input-group-addon" id="sizing-addon3">First Name</span>
+                        <input type="text" class="form-control" name="firstName" placeholder="First Name" aria-describedby="sizing-addon3" required readonly>
+                    </div>
+
+                    <div class="input-group input-group-sm col-xs-10 col-xs-offset-1">
+                        <span class="input-group-addon" id="sizing-addon3">Last Name</span>
+                        <input type="text" class="form-control" name="lastName" placeholder="Last Name" aria-describedby="sizing-addon3" required readonly>
+                    </div>
+                    
+                    <br>
+
+                    <div class="input-group input-group-sm col-xs-10 col-xs-offset-1">
+                        <span class="input-group-addon" id="sizing-addon3">User ID</span>
+                        <input type="text" class="form-control" name="user_id" placeholder="User ID" aria-describedby="sizing-addon3" required readonly>
+                    </div>
+
+                    <div class="input-group input-group-sm col-xs-10 col-xs-offset-1">
+                        <span class="input-group-addon" id="sizing-addon3">Socity ID</span>
+                        <input type="text" class="form-control" name="socity_id" placeholder="Socity ID" aria-describedby="sizing-addon3" required readonly>
+                    </div>
+                    
+                    <br>
+                    
+                    <div class="input-group input-group-sm col-xs-10 col-xs-offset-1">
+                        <span class="input-group-addon" id="sizing-addon3">Address</span>
+                        <input type="text" class="form-control" name="address" placeholder="Address" aria-describedby="sizing-addon3" required readonly>
+                    </div>
+
+                    <br>
+                    
+                    <button type="submit" class="btn btn-default col-xs-10 col-xs-offset-1 ">Save</button>
+                </form>
+           </div>
+       </div>
+   </div>
+</div>

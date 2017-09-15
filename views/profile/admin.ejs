@@ -18,6 +18,8 @@
         <div class="row" id="layout_row" >
             <div class="col-xs-12 col-md-6" id="board_container">
                     <div class="row" id="board_row" >
+                           
+                            <!-- Socities -->
                             <div id="socities_bloc" class="column col-xs-1 col-md-1">
                                 
                                 <div class="row">
@@ -42,17 +44,22 @@
                             </div>
 
 
-
+                            <!-- employee -->
                             <div id="employee_bloc" class="column col-xs-11 col-md-4">
                                 <div class="row">
                                 </div>  
                             </div>
 
 
+                            <!-- detail -->
+                            <div id="detail_block" class="column hidden-xs hidden-sm col-md-7">
+                                <div class="row">
+                                    <!-- Manager Detail data  -->
+                                    <% include ./admin_employee_detail %>
+                                </div>  
+                            </div>
 
-
-                            <div id="detail_block" class="column hidden-xs hidden-sm col-md-7"></div>
-                                        
+                            
                     </div>
             </div>
             
@@ -60,31 +67,43 @@
     </div>
 
 
-     <!-- The Modals -->
-     <div id="socity_model" class="modal">
-        <!-- Add socity form  -->
+    <!-- The Modals -->
+     
+    <!-- Add socity form  -->
+    <div id="socity_model" class="modal">
         <% include ../forms/add_socity %>
     </div>
 
+    <!-- Add manager form  -->
     <div id="manager_model" class="modal">
-        <!-- Add manager form  -->
         <% include ../forms/add_manager %>
     </div>
 
+    <!-- Add worker form  -->
     <div id="worker_model" class="modal">
-        <!-- Add worker form  -->
         <% include ../forms/add_worker %>
     </div>
 
+    <!-- confirmation_dell form  -->
     <div id="confirmation_model" class="modal">
-        <!-- confirmation_dell form  -->
         <% include ../forms/confirmation_dell %>
     </div>
 
+    <!-- confirmation_dell form  -->
     <div id="confirmation_W_model" class="modal">
-        <!-- confirmation_dell form  -->
         <% include ../forms/confirmation_W_dell %>
     </div>
+
+    <!-- detail model for responsive  -->
+    <div id="detail_model" class="modal">
+        <% include ./admin_employee_detail %>
+    </div>
+
+    <!-- big QRCode  -->
+    <div id="qr_model" class="modal">
+        <center class="modal-content animate" id="big_qr_code"></center>
+    </div>
+    
 
 </body>
 
@@ -93,6 +112,32 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- QR code  -->
+<script type="text/javascript" src="javascripts/qrcode.min.js"></script>
+<script>
+    var qr_code = new QRCode(document.getElementById("qr_code"),{
+        text: "",
+        width: 115,
+        height: 115,
+        colorDark : "#000000",
+        colorLight : "#ffffff"
+    });
+    var big_qr = new QRCode(document.getElementById("big_qr_code"),{
+        text: "",
+        width: 300,
+        height: 300,
+        colorDark : "#000000",
+        colorLight : "#ffffff"
+    }); 
+
+    $("#qr_code").click(function(){
+        big_qr.clear();
+        big_qr.makeCode($("#qr_code").attr("title") )
+        $("#qr_model").css({"display": "block"})
+    })
+    
+</script>
 
 <!-- Responcive -->
 <script> 
@@ -105,6 +150,16 @@
         else{
             $(".circle_item.socity").css({'height': '35px', 'width': '35px'})
         }  
+        if($( window ).width()+15 < 992){
+                                        $("#detail_block")
+                                            .css({"height": "auto"})
+                                            .attr({"class": "column col-xs-12 col-sm-12 col-md-7"})
+                                    }
+                                    else{
+                                        $("#detail_block")
+                                            .css({"height": "100%"})
+                                    }
+
     });     
 </script>
 
@@ -117,7 +172,9 @@
     var worker_model = document.getElementById('worker_model');
     var confirmation_model = document.getElementById('confirmation_model');
     var confirmation_W_model = document.getElementById('confirmation_W_model');
-    
+    var qr_model = document.getElementById('qr_model');
+    var detail_model = document.getElementById('detail_model');
+
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == socity_model) {
@@ -134,6 +191,12 @@
         }
         if (event.target == confirmation_W_model) {
             confirmation_W_model.style.display = "none";
+        }
+        if (event.target == qr_model) {
+            qr_model.style.display = "none";
+        }
+        if (event.target == detail_model) {
+            detail_model.style.display = "none";
         }
     }
 </script>
@@ -241,11 +304,59 @@
 
         var url = "<%= site %>/dataBase/get_"+type+"?id="+employee_id+"&format=json";
         $.get(url, function(employee){
-            console.log(employee);
-            $("#detail_block").text(employee)
-           /*  if(type == "manager"){
+            
+            $(".detail_head").css({"display": "block"})
+
+            if(type == "manager"){
+                $("#worker_detail").css({"display": "none"})
+                $("#manager_detail").css({"display": "block"})
+
+                $(".detail_img").find(".name_img").text(employee.pseudo);
+                $("#manager_detail").find("input[name=username]").val(employee.username);
+                $("#manager_detail").find("input[name=pseudo]").val(employee.pseudo);
+
+                $("#manager_detail").find("input[name=user_id]").val(employee._id);
+                $("#manager_detail").find("input[name=socity_id]").val(employee.socities[0]);
+
         
-            } */
+                
+                qr_code.clear();
+                qr_code.makeCode(JSON.stringify(
+                    {
+                        username: employee.username,
+                        pseudo: employee.pseudo,
+                        employee_id: employee._id,
+                        socity_id: employee.socities[0]
+                    }
+                ));
+                
+            }
+            else{
+                $("#manager_detail").css({"display": "none"})
+                $("#worker_detail").css({"display": "block"})
+
+
+                $(".detail_img").find(".name_img").text(employee.firstName);
+                $("#worker_detail").find("input[name=firstName]").val(employee.firstName);
+                $("#worker_detail").find("input[name=lastName]").val(employee.lastName);
+
+                $("#worker_detail").find("input[name=user_id]").val(employee._id);
+                $("#worker_detail").find("input[name=socity_id]").val(employee.socity);
+
+                $("#worker_detail").find("input[name=address]").val(employee.address);
+
+                
+                qr_code.clear();
+                qr_code.makeCode(JSON.stringify(
+                    {
+                        firstName: employee.firstName,
+                        lastName : employee.lastName,
+                        employee_id : employee._id,
+                        socity_id : employee.socity,
+                        address: employee.address
+                    }
+                ));
+            }
         })
     }
 
@@ -273,9 +384,9 @@
                                     $(this)
                                         .attr({'class': "list-group-item selected_employee"})
                                         .css({'background-color': '#323279'})
-                                   
+                    
                                     // Display employee data
-                                    $("#detail_block").css({"background-color": "#5c5c90"})
+                                    $("#detail_block").css({"background-color": "#4d4d71"})
                                     display_employee_data($(this).attr('id'), "manager");
                                 }
                                 else{
@@ -285,8 +396,9 @@
                                         .css({'background-color': '#323339'})
                                     
                                     // Clear employee data
-                                    $("#detail_block").html("")
-                                        .css({"background-color": "#393b41"})        
+                                    $("#detail_block")
+                                        .css({"background-color": "#393b41"}) 
+                                    $(".detail_head").css({"display": "none"})       
                                 }
                             })
                             .mouseenter(function(){ $(this).css({'background-color': '#323279'})})
@@ -363,8 +475,11 @@
                                         .css({'background-color': '#323339'})
                                     
                                     // Clear employee data
-                                    $("#detail_block").html("")
-                                        .css({"background-color": "#393b41"})
+                                    $("#detail_block")
+                                        .css({"background-color": "#393b41"}) 
+                                    $(".detail_head").css({"display": "none"})
+                                    
+                                    
                                 }
                                     
                             
@@ -435,6 +550,11 @@
                                 if($(this).attr("class") == "circle_item socity unselected_socity"){
                                     /* Clear the area */
                                     $("#employee_bloc").html("");
+
+                                    $("#detail_block")
+                                        .css({"background-color": "#393b41"}) 
+                                    $(".detail_head").css({"display": "none"}) 
+
                                     /* Unselect all items */
                                     $(this).parent().parent().find(".selected_socity").attr({'class': "circle_item socity unselected_socity"})
                                     $("#employee_bloc").css({'background-color': '#3e3e63'})
@@ -456,6 +576,11 @@
                                     $("input[name=manager_socity]").val("");
                                     $("input[name=worker_socity]").val("");
                                     $("#employee_bloc").html("");
+
+                                    $("#detail_block")
+                                        .css({"background-color": "#393b41"}) 
+                                    $(".detail_head").css({"display": "none"}) 
+                                     
                                 }
                             })
                     )
@@ -467,6 +592,7 @@
 
 </script>
 
+<!-- Main Script -->
 <script>
     
     // Display html
@@ -480,4 +606,5 @@
             .attr({'action': $('#confirmation_W_model form').attr('action')+"&save="+$(".save").is( ':checked') });
     }
 </script>
+
 </html>
