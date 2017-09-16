@@ -299,6 +299,19 @@
             )       
     }
 
+    // Read Write manager employee data
+    var rw_detail_form = function(){
+        // manager r
+        $("#manager_detail").find(".form-control").attr({"readonly": true});
+        $("#manager_detail").find(".submit").css({"display": "none"});
+        $("#manager_detail").find("input[name=change]").css({"display": "none"});
+
+        //worker r
+        $("#worker_detail").find(".form-control").attr({"readonly": true});
+        $("#worker_detail").find(".submit").css({"display": "none"});
+        
+    }
+
     // Display employee Data
     var display_employee_data = function(employee_id, type){
 
@@ -307,7 +320,10 @@
             
             $(".detail_head").css({"display": "block"})
 
+            rw_detail_form();
+
             if(type == "manager"){
+                
                 $("#worker_detail").css({"display": "none"})
                 $("#manager_detail").css({"display": "block"})
 
@@ -318,7 +334,7 @@
                 $("#manager_detail").find("input[name=user_id]").val(employee._id);
                 $("#manager_detail").find("input[name=socity_id]").val(employee.socities[0]);
 
-        
+                
                 
                 qr_code.clear();
                 qr_code.makeCode(JSON.stringify(
@@ -340,7 +356,7 @@
                 $("#worker_detail").find("input[name=firstName]").val(employee.firstName);
                 $("#worker_detail").find("input[name=lastName]").val(employee.lastName);
 
-                $("#worker_detail").find("input[name=user_id]").val(employee._id);
+                $("#worker_detail").find("input[name=worker_id]").val(employee._id);
                 $("#worker_detail").find("input[name=socity_id]").val(employee.socity);
 
                 $("#worker_detail").find("input[name=address]").val(employee.address);
@@ -427,7 +443,7 @@
                                                     $("#confirmation_model form")
                                                         .attr({
                                                             'method': 'post',
-                                                            'action': "<%= site %>/dataBase/dell_user?id="+ id
+                                                            'action': "<%= site %>/dataBase/dell_manager?id="+ id
                                                         })
                                                     
                                                     
@@ -528,7 +544,7 @@
                 $("#workers_count").text(workers.length);
             })
         }
-         
+        
         display_managers();
         display_workers();
     }
@@ -547,6 +563,7 @@
                                 'id':socity._id
                                 })
                             .click(function(){
+                                rw_detail_form();
                                 if($(this).attr("class") == "circle_item socity unselected_socity"){
                                     /* Clear the area */
                                     $("#employee_bloc").html("");
@@ -590,6 +607,7 @@
         });
     }
 
+
 </script>
 
 <!-- Main Script -->
@@ -597,14 +615,44 @@
     
     // Display html
     $(document).ready(function(){
+        // Display 
         display_socities();
+        
+        // Check box post integration value
+        var checkbox = function(){
+            $('#confirmation_W_model form')
+                .attr({'action': $('#confirmation_W_model form').attr('action')+"&save="+$(".store").is( ':checked') });
+        }
+
+        // Update an employee
+        $(".edit_det").click(function(){
+            if($("#manager_detail").css("display") == "block"){
+     
+                // manager rw
+                $("#manager_detail").find(".form-control[name=username]").removeAttr("readonly");
+                $("#manager_detail").find(".form-control[name=pseudo]").removeAttr("readonly");
+                $("#manager_detail").find("input[name=change]").css({"display": "inline"});
+                $("#manager_detail").find(".submit").css({"display": "block"});
+                
+            }
+            else{
+             
+                // worker rw
+                $("#worker_detail").find(".form-control[name=firstName]").removeAttr("readonly");
+                $("#worker_detail").find(".form-control[name=lastName]").removeAttr("readonly");
+                $("#worker_detail").find(".form-control[name=address]").removeAttr("readonly");
+                $("#worker_detail").find(".submit").css({"display": "block"});
+            }
+        
+        })
+        
+       
     })
     
-    // Check box post integration value
-    var checkbox = function(){
-        $('#confirmation_W_model form')
-            .attr({'action': $('#confirmation_W_model form').attr('action')+"&save="+$(".save").is( ':checked') });
-    }
+    
+
+    
+    
 </script>
 
 </html>

@@ -219,8 +219,8 @@ module.exports = {
         });
     },
 
-     // Get Worker
-     get_worker: function (req, res) {
+    // Get Worker
+    get_worker: function (req, res) {
         Worker.findById(req.query.id, function(err, worker){
             if (err) {
                 console.log("find errr");
@@ -231,8 +231,8 @@ module.exports = {
         });
     },
 
-    // Dell user
-    dell_user: function (req, res) {
+    // Dell manager
+    dell_manager: function (req, res) {
         /* Dellete links between the user and his socity */
         Socity.find({managers: req.query.id},function(err, socities){
             if (err) {
@@ -292,6 +292,35 @@ module.exports = {
         Worker.findByIdAndRemove(req.query.id).exec();
         
         res.redirect('/admin');
+    },
+
+    // Update manager
+    update_manager: function(req, res){
+        User.findById(req.body.user_id, function(err, manager){
+            if(err) {
+                console.log(" find err");
+                res.redirect("/admin");
+            }
+            manager.pseudo = req.body.pseudo;
+            manager.save();
+        });
+        res.redirect("/admin");
+    },
+
+    // Update worker
+    update_worker: function(req, res){
+        Worker.findById(req.body.worker_id, function(err, worker){
+            if(err) {
+                console.log(" find err");
+                res.redirect("/admin");
+            }
+            worker.firstName = req.body.firstName;
+            worker.lastName = req.body.lastName;
+            worker.address = req.body.address;
+            
+            worker.save();
+        });
+        res.redirect("/admin");
     },
 }
 

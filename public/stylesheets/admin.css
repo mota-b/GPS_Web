@@ -214,7 +214,10 @@ hr{
     cursor: pointer;
 }
 
-
+#manager_detail input[name=change]{
+    margin-left: 0px;
+    display: none;
+}
 
 
 
@@ -404,6 +407,9 @@ hr{
     width: 80%; /* Could be more or less, depending on screen size */
 }
 
-.submit{
+.store{
     margin-bottom: 30px;
+}
+.submit{
+    display: none;
 }

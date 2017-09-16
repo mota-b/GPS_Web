@@ -26,10 +26,16 @@ router.get('/get_workers', db.get_workers);
 // get worker
 router.get('/get_worker', db.get_worker);
 
-// dell user
-router.post('/dell_user', db.dell_user);
+// dell manager
+router.post('/dell_manager', db.dell_manager);
 
 // dell worker
 router.post('/dell_worker', db.dell_worker);
+
+// update manager
+router.post('/update_manager', db.update_manager);
+
+// update worker
+router.post('/update_worker', db.update_worker);
 
 module.exports = router;
