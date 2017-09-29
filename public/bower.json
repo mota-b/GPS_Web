@@ -1,0 +1,14 @@
+{
+  "name": "public",
+  "homepage": "https://github.com/moukhtar-b/GPS_Web",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

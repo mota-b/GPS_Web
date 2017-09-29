@@ -1,0 +1,43 @@
+
+        <!-- Icon Bar -->
+        <div id="icon-bar">
+            <center>
+                      <ul id="icon-list" class="list-group" >
+                          <li  id="menu-icon" class="js-toggle-left-slidebar" ><span> <a  href="#"  class="js-toggle-left-slidebar" ><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a> <span></li>
+                              
+                          <li class="nav-item" ><a  href="/"><i class="fa fa-home fa-retro" aria-hidden="true"></i></a></li>
+                          <li class="nav-item collapsed " data-toggle="collapse" data-parent="#accordion" href="#collapseGuest"><a  href="#"><i class="fa fa-user fa-retro" aria-hidden="true"></i></a></li>
+                         
+                      </ul>
+              </center>
+          </div><!-- /Icon Bar -->
+      
+          <!-- navbar -->
+          <div id="navbar" off-canvas="slidebar-1 left overlay">
+              <ul id="nav-list" class="list-group" >
+                          <li class="nav-item" ><a href="/">Home</a></li>
+                          
+                          <% if(!user){ %>
+                              <li id="collapseGuest_act" class="nav-item collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseGuest"><a  href="#">Guest<span class="caret"></span></a></li>
+                              <ul id="collapseGuest" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                  <li><a href="/login">LogIn</a></li>
+                                  <li><a href="/login#">Register</a></li>
+                              </ul>
+                          <% } %>
+                      
+                          <% if(user){ %>
+                              <li id="collapseGuest_act" class="nav-item" data-toggle="collapse" data-parent="#accordion" href="#collapseGuest"><a href="#" ><%= user.pseudo %><span class="caret"></span></a></li>
+                              <ul id="collapseGuest" class="collapse " role="tabpanel" aria-labelledby="headingOne">    
+                                  <% if(user.isAdmin){ %>
+                                      <li><a href="/admin">AdminPage</a></li>
+                                  <% } %>
+                                  <li><a href="/user">Profile</a></li>
+                                  <li><a href="/logout">LogOut</a></li>
+                                
+                              </ul>
+                          <% } %>
+                     
+                         
+              
+              </ul>
+          </div><!-- navbar -->

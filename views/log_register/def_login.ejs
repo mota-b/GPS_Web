@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <!-- Font-awesome -->
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+        <!-- Slidebars -->
+        <link rel="stylesheet" href="stylesheets/slidebar/def_custom_slidebar.css">
+       
+        <!-- Log_register -->
+        <link rel="stylesheet" type="text/css" href="stylesheets/log_register/def_custom_log_register.css" />
+
+       
+       
+    </head>
+        
+    <body>
+        
+        <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+        
+
+        <!-- nav bar  -->
+        <% include ../nav/def_navbar %>
+        <div id="main-content" class="" canvas="container">
+        
+            <div class="row">
+                
+                    <ul>
+                        <li id="b_log"><a href="#">LogIn</a></li>
+                        <li id="b_sign"><a href="#">SignUp</a></li>
+                    </ul>
+               
+                <div class="col-xs-12 sec-1">
+                        <div class="left-1 hidden-xs col-sm-6"><h1>LogIn</h1></div>
+                        <div class="right-1 col-xs-12 col-sm-6">
+                            <!-- Log form -->
+                            <% include def_login_form %>
+                        </div>
+                        
+                </div>
+                <div class="col-xs-12 sec-2">
+                        <div class="left-2 col-xs-12 col-sm-6">
+                            <!-- Register Form -->
+                            <% include def_register_form %>
+                        </div>
+                        <div class="right-2 hidden-xs col-sm-6"><h1>SignUp</h1></div>    
+                    
+                </div>
+                    
+            </div>
+            
+        </div><!-- Container-->
+
+        <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+		
+		<!-- jQuery -->
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap Core JavaScript -->
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- SideBar -->
+        <script src="javascripts/slidebar/slidebars.js"></script>
+        <script src="javascripts/slidebar/def_custom_slidebar.js"></script>
+        
+        <!-- log-register  -->
+        <script src="javascripts/log_register/def_log_register.js"></script>
+
+    </body>
+     
+</html>

@@ -6,6 +6,9 @@ var auth = require("../controllers/AuthController.js");
 router.get('/', auth.login);
 
 // route for login action
-router.post('/', auth.doLogin);
+router.post('/log_me', auth.doLogin);
+
+// route for register action
+router.post('/register_me', auth.doRegister);
 
 module.exports = router;

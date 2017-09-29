@@ -25,7 +25,6 @@ mongoose.connect(db_url, { useMongoClient: true })
  * Routers declaration
  */ 
 var index = require('./routes/index');
-var register = require('./routes/register');
 var login = require('./routes/login');
 var admin = require('./routes/admin');
 var user = require('./routes/user');
@@ -63,7 +62,6 @@ app.use(express.static(path.join(__dirname, 'public')));
  * Routers init
  */
 app.use('/', index);
-app.use('/register', register);
 app.use('/login', login);
 app.use('/admin', admin);
 app.use('/user', user);

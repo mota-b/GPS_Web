@@ -24,12 +24,12 @@ var isSessionActive = function(user) {
 module.exports = {
   
   // Restrict access to root page
-  home : function(req, res) {
+  index : function(req, res) {
     var user = '';
     if (isSessionActive(req.user)) 
       user = req.user;
     
-    res.render('index', { user : user, site: site_url});
+    res.render('index/def_index', { user : user, site: site_url});
   },
 
   // Restrict access to registration page
@@ -37,19 +37,18 @@ module.exports = {
     if (isSessionActive(req.user)) 
       res.redirect('/');
     else
-      res.render('log_register/register', { user : '', site: site_url});
+      res.render('log_register/def_register', { user : '', site: site_url});
   },
 
   // Post registration
   doRegister : function(req, res) {
     User.register(new User({ username : req.body.username, pseudo: req.body.pseudo, isAdmin: false, isManager: false }), req.body.password, function(err, user) {
       if (err) {
-        return res.render('log_register/register', { user : user , site: site_url});
-      }
-
-      passport.authenticate('local')(req, res, function () {
-        res.redirect('/');
-      });
+        return res.json({"v": false, "result": err});
+      }else
+        passport.authenticate('local')(req, res, function () {
+          return res.json({"v": true, "result": "/user"});
+        });
     });
   },
 
@@ -58,14 +57,17 @@ module.exports = {
     if (isSessionActive(req.user)) 
       res.redirect('/');
     else
-      res.render('log_register/login', { user : req.user , site: site_url});
+      res.render('log_register/def_login', { user : req.user , site: site_url});
   },
 
   // Post login
   doLogin : function(req, res) {
-    passport.authenticate('local')(req, res, function () {
-      res.redirect('/');
-    });
+    
+    passport.authenticate('local')(req, res, function (err,user) {
+      if(!err)
+        return res.json({"v": true, "result": "/user"});
+    })
+  
   },
 
   // Restrict access to Admin page
@@ -75,7 +77,7 @@ module.exports = {
         if(err) throw err; 
         
         if(doc.isAdmin)
-          res.render('profile/admin', { user : req.user, site: site_url});
+          res.render('profile/def_admin', { user : req.user, site: site_url});
         else
           res.redirect('/user');
       });
@@ -89,7 +91,7 @@ module.exports = {
     if (isSessionActive(req.user)){
       User.findById(req.user._id, function(err, doc){
         if(err) throw err; 
-        res.render('profile/user', { user : req.user, site: site_url});
+        res.render('profile/def_user', { user : req.user, site: site_url});
       });
     }   
     else

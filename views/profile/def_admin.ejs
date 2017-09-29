@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font-awesome -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+    <!-- Slidebars -->
+    <link rel="stylesheet" href="stylesheets/slidebar/def_custom_slidebar.css">
+   
+
+    <link href="/stylesheets/profile/admin.css" rel="stylesheet">
+
+</head>
+    <body>
+
+        <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+        
+
+        <!-- nav bar  -->
+        <% include ../nav/def_navbar %>
+        <div id="main-content" class="" canvas="container">
+    
+            <div class="container" id="layout_container">
+                <div class="row" id="layout_row" >
+                    <div class="col-xs-12 col-md-6" id="board_container">
+                            <div class="row" id="board_row" >
+                                
+                                    <!-- Socities -->
+                                    <div id="socities_bloc" class="column col-xs-1 col-md-1">
+                                        
+                                        <div class="row">
+                                            <div id="add_socity" class="col-xs-12 item">
+                                                <center> <li  class="circle_item add" title="add a socity" onclick="document.getElementById('socity_model').style.display='block'"></li> </center>  
+                                                <hr>
+                                                <center><span id="socities_count" class="badge">?</span></center>    
+                                            </div> 
+
+                                            <div class="col-xs-12 item">
+                                                <ul id="socities" class="list-group">
+                                                    <!-- <center> <li id="add_socity" class="circle_item socity"></li> </center> -->  
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="col-xs-12 item">
+                                                <hr>    
+                                            </div> 
+                                            
+                                        </div>
+                                        
+                                    </div>
+
+
+                                    <!-- employee -->
+                                    <div id="employee_bloc" class="column col-xs-11 col-md-4">
+                                        <div class="row">
+                                        </div>  
+                                    </div>
+
+
+                                    <!-- detail -->
+                                    <div id="detail_block" class="column hidden-xs hidden-sm col-md-7">
+                                        <div class="row">
+                                            <!-- Manager Detail data  -->
+                                            <% include ./admin_employee_detail %>
+                                        </div>  
+                                    </div>
+
+                                    
+                            </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+
+            <!-- The Modals -->
+            
+            <!-- Add socity form  -->
+            <div id="socity_model" class="modal">
+                <% include ../forms/add_socity %>
+            </div>
+
+            <!-- Add manager form  -->
+            <div id="manager_model" class="modal">
+                <% include ../forms/add_manager %>
+            </div>
+
+            <!-- Add worker form  -->
+            <div id="worker_model" class="modal">
+                <% include ../forms/add_worker %>
+            </div>
+
+            <!-- confirmation_dell form  -->
+            <div id="confirmation_model" class="modal">
+                <% include ../forms/confirmation_dell %>
+            </div>
+
+            <!-- confirmation_dell form  -->
+            <div id="confirmation_W_model" class="modal">
+                <% include ../forms/confirmation_W_dell %>
+            </div>
+
+            <!-- detail model for responsive  -->
+            <div id="detail_model" class="modal">
+                <% include ./admin_employee_detail %>
+            </div>
+
+            <!-- big QRCode  -->
+            <div id="qr_model" class="modal">
+                <center class="modal-content animate" id="big_qr_code"></center>
+            </div>
+
+        </div><!-- Container-->
+
+        <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+		
+		<!-- jQuery -->
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap Core JavaScript -->
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- SideBar -->
+        <script src="javascripts/slidebar/slidebars.js"></script>
+        <script src="javascripts/slidebar/def_custom_slidebar.js"></script>
+
+        <!-- QR code  -->
+        <script type="text/javascript" src="javascripts/qrcode.min.js"></script>
+        <script>
+            var qr_code = new QRCode(document.getElementById("qr_code"),{
+                text: "",
+                width: 115,
+                height: 115,
+                colorDark : "#000000",
+                colorLight : "#ffffff"
+            });
+            var big_qr = new QRCode(document.getElementById("big_qr_code"),{
+                text: "",
+                width: 300,
+                height: 300,
+                colorDark : "#000000",
+                colorLight : "#ffffff"
+            }); 
+
+            $("#qr_code").click(function(){
+                big_qr.clear();
+                big_qr.makeCode($("#qr_code").attr("title") )
+                $("#qr_model").css({"display": "block"})
+            })
+
+        </script>
+
+
+        <!-- Responcive -->
+        <script> 
+            
+            $( window ).resize(function() {
+                var size = $( window ).width()+15
+                if (size <= 500){
+                    $(".circle_item.socity").css({'height': '25px', 'width': '25px'})
+                }
+                else{
+                    $(".circle_item.socity").css({'height': '35px', 'width': '35px'})
+                }  
+                if($( window ).width()+15 < 992){
+                                                $("#detail_block")
+                                                    .css({"height": "auto"})
+                                                    .attr({"class": "column col-xs-12 col-sm-12 col-md-7"})
+                                            }
+                                            else{
+                                                $("#detail_block")
+                                                    .css({"height": "100%"})
+                                            }
+
+            });     
+        </script>
+
+        <!-- Models -->
+        <script>
+            
+            // Get the modal
+            var socity_model = document.getElementById('socity_model');
+            var manager_model = document.getElementById('manager_model');
+            var worker_model = document.getElementById('worker_model');
+            var confirmation_model = document.getElementById('confirmation_model');
+            var confirmation_W_model = document.getElementById('confirmation_W_model');
+            var qr_model = document.getElementById('qr_model');
+            var detail_model = document.getElementById('detail_model');
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == socity_model) {
+                    socity_model.style.display = "none";
+                }
+                if (event.target == manager_model) {
+                    manager_model.style.display = "none";
+                }
+                if (event.target == worker_model) {
+                    worker_model.style.display = "none";
+                }
+                if (event.target == confirmation_model) {
+                    confirmation_model.style.display = "none";
+                }
+                if (event.target == confirmation_W_model) {
+                    confirmation_W_model.style.display = "none";
+                }
+                if (event.target == qr_model) {
+                    qr_model.style.display = "none";
+                }
+                if (event.target == detail_model) {
+                    detail_model.style.display = "none";
+                }
+            }
+        </script>
+
+        <!-- Display Data -->
+        <script>
+
+
+            // Display socity Schema
+            var display_socity_schema = function(socity_name){
+                $("#employee_bloc")
+
+                    /* Managers Schema */
+                    .append(
+                        $("<div>")
+                            .attr({'class': "col-xs-12 item"})
+                            
+                            .append($("<li>").text(socity_name).attr({"class":"socity_name"}))
+                            .append($("<li>").text("Managers").attr({"class":"socity_subtitle"}))
+
+                            .append(
+                                $("<li>")
+                                    .attr({"class": "circle_item add add-employee", "title": "add a manager", "onclick": "document.getElementById('manager_model').style.display='block'" })
+                            ) 
+                    )
+                    
+                    .append(
+                        $("<div>")
+                            .attr({'class': "col-xs-12 item"})
+                            .append("<hr>")
+                            .append(
+                                $("<center>")
+                                        .append(
+                                            $("<span>")
+                                                .attr({'id': 'managers_count', 'class': 'badge'})
+                                                .text('?')
+                                        )
+                            )
+                    )
+                    .append(
+                        $("<div>")
+                            .attr({'class': "col-xs-12 item"})
+                            .append(
+                                $("<center>")
+                                    .append(
+                                        $("<ul>")
+                                                .attr({'id': "managers", 'class': "list-group"})
+                                                )
+                            ) 
+                )
+                    .append(
+                        $("<div>")
+                            .attr({'class': "col-xs-12 item"})
+                            .append("<hr>")  
+                    )
+
+                    
+                    /* Workers Schema */
+                    .append(
+                        $("<div>")
+                            .attr({'class': "col-xs-12 item"})
+
+                            .append($("<li>").text("Workers").attr({"class":"socity_subtitle"}))
+
+                            .append(
+                                $("<li>")
+                                    .attr({"class": "circle_item add add-employee", "title": "add a Worker", "onclick": "document.getElementById('worker_model').style.display='block'" })
+                            ) 
+                    )
+                    
+                    .append(
+                        $("<div>")
+                            .attr({'class': "col-xs-12 item"})
+                            .append("<hr>")
+                            .append(
+                                $("<center>")
+                                        .append(
+                                            $("<span>")
+                                                .attr({'id': 'workers_count', 'class': 'badge'})
+                                                .text('?')
+                                        )
+                            )
+                    )
+                    .append(
+                        $("<div>")
+                            .attr({'class': "col-xs-12 item"})
+                            .append(
+                                $("<center>")
+                                    .append(
+                                        $("<ul>")
+                                                .attr({'id': "workers", 'class': "list-group"})
+                                    )    
+                
+                            )
+                    )
+                    .append(
+                        $("<div>")
+                            .attr({'class': "col-xs-12 item"})
+                            .append("<hr>")  
+                    )       
+            }
+
+            // Read Write manager employee data
+            var rw_detail_form = function(){
+                // manager r
+                $("#manager_detail").find(".form-control").attr({"readonly": true});
+                $("#manager_detail").find(".submit").css({"display": "none"});
+                $("#manager_detail").find("input[name=change]").css({"display": "none"});
+
+                //worker r
+                $("#worker_detail").find(".form-control").attr({"readonly": true});
+                $("#worker_detail").find(".submit").css({"display": "none"});
+                
+            }
+
+            // Display employee Data
+            var display_employee_data = function(employee_id, type){
+
+                var url = "<%= site %>/dataBase/get_"+type+"?id="+employee_id+"&format=json";
+                $.get(url, function(employee){
+                    
+                    $(".detail_head").css({"display": "block"})
+
+                    rw_detail_form();
+
+                    if(type == "manager"){
+                        
+                        $("#worker_detail").css({"display": "none"})
+                        $("#manager_detail").css({"display": "block"})
+
+                        $(".detail_img").find(".name_img").text(employee.pseudo);
+                        $("#manager_detail").find("input[name=username]").val(employee.username);
+                        $("#manager_detail").find("input[name=pseudo]").val(employee.pseudo);
+
+                        $("#manager_detail").find("input[name=user_id]").val(employee._id);
+                        $("#manager_detail").find("input[name=socity_id]").val(employee.socities[0]);
+
+                        
+                        
+                        qr_code.clear();
+                        qr_code.makeCode(JSON.stringify(
+                            {
+                                username: employee.username,
+                                pseudo: employee.pseudo,
+                                employee_id: employee._id,
+                                socity_id: employee.socities[0]
+                            }
+                        ));
+                        
+                    }
+                    else{
+                        $("#manager_detail").css({"display": "none"})
+                        $("#worker_detail").css({"display": "block"})
+
+
+                        $(".detail_img").find(".name_img").text(employee.firstName);
+                        $("#worker_detail").find("input[name=firstName]").val(employee.firstName);
+                        $("#worker_detail").find("input[name=lastName]").val(employee.lastName);
+
+                        $("#worker_detail").find("input[name=worker_id]").val(employee._id);
+                        $("#worker_detail").find("input[name=socity_id]").val(employee.socity);
+
+                        $("#worker_detail").find("input[name=address]").val(employee.address);
+
+                        
+                        qr_code.clear();
+                        qr_code.makeCode(JSON.stringify(
+                            {
+                                firstName: employee.firstName,
+                                lastName : employee.lastName,
+                                employee_id : employee._id,
+                                socity_id : employee.socity,
+                                address: employee.address
+                            }
+                        ));
+                    }
+                })
+            }
+
+            // Display socity data
+            var display_socity_data = function(socity_id){
+                // Display Managers
+                var display_managers = function(){ 
+                    $.get("<%= site %>/dataBase/get_managers?id="+ socity_id+ "&format=json", function(managers){
+                        managers.forEach(function(manager) {
+                            /* Display manager item */
+                            $("#managers").append(
+                                
+                                $("<li>")
+                                    .attr({'id': manager._id,'class': "list-group-item unselected_employee"})
+                                    
+                                    .click(function(){
+                                        if($(this).attr('class') == "list-group-item unselected_employee"){
+                                            
+                                            // Unselect all items 
+                                            $("#managers .list-group-item,#workers .list-group-item")
+                                                .attr({'class': "list-group-item unselected_employee"})    
+                                                .css({'background-color': '#323339'})
+                                            
+                                            // Select this items 
+                                            $(this)
+                                                .attr({'class': "list-group-item selected_employee"})
+                                                .css({'background-color': '#323279'})
+                            
+                                            // Display employee data
+                                            $("#detail_block").css({"background-color": "#4d4d71"})
+                                            display_employee_data($(this).attr('id'), "manager");
+                                        }
+                                        else{
+                                            // Unselect this items 
+                                            $(this)
+                                                .attr({'class': "list-group-item unselected_employee"})
+                                                .css({'background-color': '#323339'})
+                                            
+                                            // Clear employee data
+                                            $("#detail_block")
+                                                .css({"background-color": "#393b41"}) 
+                                            $(".detail_head").css({"display": "none"})       
+                                        }
+                                    })
+                                    .mouseenter(function(){ $(this).css({'background-color': '#323279'})})
+                                    .mouseleave(function(){ if($(this).attr('class') == "list-group-item unselected_employee") $(this).css({'background-color': '#323339'})})
+                                    
+
+                                    .append(
+                                        $("<li>")
+                                            .attr({'class': "circle_item employee"})
+                                    )
+                                    .append(
+                                            $("<li>")
+                                                .attr({'class': "employee_pseudo"})
+                                                .text(manager.pseudo)
+                                    )
+                                    .append(
+                                            $("<ul>")
+                                                .attr({'class': "edit_employee"})
+                                                .append(
+                                                    $("<li>")
+                                                        .attr({'class': "dell_employee"})
+                                                        .click(function(){
+                                                            var id = $(this).parent().parent().attr('id');
+                                                            $("input[name=employee_id]").val(id);
+                                                            
+                                                            $("#confirmation_model form")
+                                                                .attr({
+                                                                    'method': 'post',
+                                                                    'action': "<%= site %>/dataBase/dell_manager?id="+ id
+                                                                })
+                                                            
+                                                            
+                                                            document.getElementById('confirmation_model').style.display='block';
+                                                        })
+                                                )
+                                    )
+                            )
+                        })
+                        $("#managers_count").text(managers.length);               
+                    })
+                }
+
+                /* Display workers item */
+                var display_workers = function(){
+                    $.get("<%= site %>/dataBase/get_workers?id="+ socity_id+ "&format=json", function(workers){
+                        workers.forEach(function(worker) {
+                            // Display worker item 
+                            $("#workers").append(
+                                
+                                $("<li>")
+                                    .attr({'id': worker._id,'class': "list-group-item unselected_employee"})
+                                    .click(function(){
+                                        if($(this).attr('class') == "list-group-item unselected_employee"){
+                                            
+                                            // Unselect all items 
+                                            $("#managers .list-group-item,#workers .list-group-item")
+                                                .attr({'class': "list-group-item unselected_employee"})    
+                                                .css({'background-color': '#323339'})
+                                            
+                                            // Select this items 
+                                            $(this)
+                                                .attr({'class': "list-group-item selected_employee"})
+                                                .css({'background-color': '#323279'})
+                                            
+                                            // Display employee data
+                                            $("#detail_block").css({"background-color": "#5c5c90"})
+                                            display_employee_data($(this).attr('id'), "worker");
+                                        
+                                        }
+                                        else{
+                                            // Unselect this items 
+                                            $(this)
+                                                .attr({'class': "list-group-item unselected_employee"})
+                                                .css({'background-color': '#323339'})
+                                            
+                                            // Clear employee data
+                                            $("#detail_block")
+                                                .css({"background-color": "#393b41"}) 
+                                            $(".detail_head").css({"display": "none"})
+                                            
+                                            
+                                        }
+                                            
+                                    
+                                    })
+                                    .mouseenter(function(){ 
+                                        $(this).css({'background-color': '#323279'})
+                                    })
+                                    .mouseleave(function(){ 
+                                        if($(this).attr('class') == "list-group-item unselected_employee") 
+                                            $(this).css({'background-color': '#323339'})
+                                    })
+                                    
+                                    .append(
+                                        $("<li>")
+                                            .attr({'class': "circle_item employee"})
+                                            
+                                    )
+                                    .append(
+                                        $("<li>")
+                                            .attr({'class': "employee_pseudo"})
+                                            .text(worker.firstName+" "+worker.lastName)
+                                    )
+                                    .append(
+                                        $("<ul>")
+                                            .attr({'class': "edit_employee"})
+                                            .append(
+                                                $("<li>")
+                                                    .attr({'class': "dell_employee"})
+                                                    .click(function(){
+                                                        var id = $(this).parent().parent().attr('id');
+                                                        $("input[name=employee_id]").val(id);
+                                                        
+                                                        $("#confirmation_W_model form")
+                                                            .attr({
+                                                                'method': 'post',
+                                                                'action': "<%= site %>/dataBase/dell_worker?id="+ id
+                                                            })
+                                                        
+                                                        
+                                                        document.getElementById('confirmation_W_model').style.display='block';
+                                                    })
+                                            )
+                                    )
+                            )
+                        }) 
+                        $("#workers_count").text(workers.length);
+                    })
+                }
+                
+                display_managers();
+                display_workers();
+            }
+
+            // Display socities
+            var display_socities = function(){ 
+                $.get("<%= site %>/dataBase/get_socities?id=<%= user._id %>&format=json", function(socities){
+                    socities.forEach(function(socity) {
+                        /* Display socity item */
+                        $("#socities").append(
+                            $("<center>").append(    
+                                $("<li>")
+                                    .attr({
+                                        'class':'circle_item socity unselected_socity',
+                                        'title': socity.name,
+                                        'id':socity._id
+                                        })
+                                    .click(function(){
+                                        rw_detail_form();
+                                        if($(this).attr("class") == "circle_item socity unselected_socity"){
+                                            /* Clear the area */
+                                            $("#employee_bloc").html("");
+
+                                            $("#detail_block")
+                                                .css({"background-color": "#393b41"}) 
+                                            $(".detail_head").css({"display": "none"}) 
+
+                                            /* Unselect all items */
+                                            $(this).parent().parent().find(".selected_socity").attr({'class': "circle_item socity unselected_socity"})
+                                            $("#employee_bloc").css({'background-color': '#3e3e63'})
+                                            /* Select curent item */
+                                            $(this).attr({'class': "circle_item socity selected_socity"});
+                                            $("input[name=manager_socity]").val(socity._id);
+                                            $("input[name=worker_socity]").val(socity._id);
+                                            
+                                            /* Display Socity Schema */
+                                            display_socity_schema(socity.name);
+
+                                            /* Display Socity data */
+                                            display_socity_data(socity._id);
+                                        }
+                                        else{
+                                            /* Unselect curent item */
+                                            $(this).attr({'class': "circle_item socity unselected_socity"})
+                                            $("#employee_bloc").css({'background-color': '#323339'})
+                                            $("input[name=manager_socity]").val("");
+                                            $("input[name=worker_socity]").val("");
+                                            $("#employee_bloc").html("");
+
+                                            $("#detail_block")
+                                                .css({"background-color": "#393b41"}) 
+                                            $(".detail_head").css({"display": "none"}) 
+                                            
+                                        }
+                                    })
+                            )
+                        )
+                    });
+                    $("#socities_count").text(socities.length);
+                });
+            }
+
+
+        </script>
+
+        <!-- Main Script -->
+        <script>
+            
+            // Display html
+            $(document).ready(function(){
+                // Display 
+                display_socities();
+                
+                // Check box post integration value
+                var checkbox = function(){
+                    $('#confirmation_W_model form')
+                        .attr({'action': $('#confirmation_W_model form').attr('action')+"&save="+$(".store").is( ':checked') });
+                }
+
+                // Update an employee
+                $(".edit_det").click(function(){
+                    if($("#manager_detail").css("display") == "block"){
+            
+                        // manager rw
+                        $("#manager_detail").find(".form-control[name=username]").removeAttr("readonly");
+                        $("#manager_detail").find(".form-control[name=pseudo]").removeAttr("readonly");
+                        $("#manager_detail").find("input[name=change]").css({"display": "inline"});
+                        $("#manager_detail").find(".submit").css({"display": "block"});
+                        
+                    }
+                    else{
+                    
+                        // worker rw
+                        $("#worker_detail").find(".form-control[name=firstName]").removeAttr("readonly");
+                        $("#worker_detail").find(".form-control[name=lastName]").removeAttr("readonly");
+                        $("#worker_detail").find(".form-control[name=address]").removeAttr("readonly");
+                        $("#worker_detail").find(".submit").css({"display": "block"});
+                    }
+                
+                })
+                
+            
+            })
+            
+            
+
+            
+            
+        </script>
+    
+    </body>
+    
+</html>
