@@ -62,8 +62,9 @@ module.exports = {
 
   // Post login
   doLogin : function(req, res) {
-    
+    console.log(req.body)
     passport.authenticate('local')(req, res, function (err,user) {
+      
       if(!err)
         return res.json({"v": true, "result": "/user"});
     })

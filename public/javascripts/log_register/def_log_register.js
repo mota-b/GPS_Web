@@ -36,7 +36,7 @@ $("#log").submit(function(){
         url:'/login/log_me',
         type:"POST",
         data:{
-            "username": $(this).find("input[name=username]").val(),
+            "username": $(this).find("input[name=uDAsername]").val(),
             "password": $(this).find("input[name=password]").val()
         },
         
