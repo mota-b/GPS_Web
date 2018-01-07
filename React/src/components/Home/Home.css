@@ -9,9 +9,9 @@
 }
 
 #head{
+    background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1) ), url('/static/images/header-bg.jpg');
     background-size: cover;
     background-attachment: fixed;
-    background-image: url('/static/images/header-bg.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     -webkit-background-size: cover;
@@ -22,7 +22,7 @@
     color: white;
 }
 #services{
-    background-image: url('/static/images/service.jpg');
+    background-color: #696d84;
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;
@@ -35,7 +35,7 @@
 
 #about {
     height: 200vh;
-    background-image: url('/static/images/about.jpg');
+    background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5) , rgba(0, 0, 0, 0.1) ), url('/static/images/about.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center center;
@@ -46,7 +46,7 @@
     color: white;
 }
 #team {
-    background-image: url('/static/images/team.jpg');
+    background-color: #4b88b6;
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {Header} from '../Header/Header.jsx'
+import {NavBar} from '../NavBar/NavBar.jsx'
 
 import "./User.css";
 export class User extends Component{
@@ -8,10 +8,10 @@ export class User extends Component{
         return (    
                 
             <div className="page" id="user">
-                
+                <NavBar/>
+
                 <div className="section">
-                    <Header/>
-                  
+                
                     <div className="jumbotron text-center">
                         <h1>User Bootstrap</h1>
                         <p>Resize this responsive page to see the effect!</p> 

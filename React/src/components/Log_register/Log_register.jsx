@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 
-import {Header} from '../Header/Header.jsx'
+import {NavBar} from '../NavBar/NavBar.jsx'
 
 import "./Log_register.css";
 export class Log_register extends Component{
     render (){
         return (    
             <div className="page" id="log_reg">
-                
+                <NavBar/>
+
                 <div className="section">
-                    <Header/>
-                    
                     <div className="jumbotron text-center">
                         <h1>Log/Reg Bootstrap</h1>
                         <p>Resize this responsive page to see the effect!</p> 

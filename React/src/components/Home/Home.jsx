@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
-import {Header} from '../Header/Header.jsx'
+import {NavBar} from '../NavBar/NavBar.jsx'
+import {Footer} from '../Footer/Footer.jsx'
 
 import "./Home.css";
 export class Home extends Component{
@@ -8,7 +9,7 @@ export class Home extends Component{
         return (    
             <div className="page" id="home">
                 
-                <Header/>
+                <NavBar/>
 
                 <div id="head" className="section">
 
@@ -181,7 +182,7 @@ export class Home extends Component{
 
                 <div id="team" className="section bg-light-gray">
 
-                    <div className="container">
+                    <div id="tm" className="container">
                         <div className="row">
                             <div className="col-lg-12 text-center">
                                 <h2 className="section-heading">Our Amazing Team</h2>
@@ -223,11 +224,11 @@ export class Home extends Component{
                                 <p className="large text-muted">Thank's for putting your trust between our hands !s</p>
                             </div>
                         </div>
-
+                        
                     </div>
-
+                    <Footer/>
                 </div>
-                
+        
             </div>
         );
     }
