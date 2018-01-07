@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+    font-family: arial, sans-serif;
+    color: black;
+    padding: 0;
+    margin: 0;
+}
+header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url("http://unsplash.com/photos/9idqIGrLuTE/download?force=true");
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+.container {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    border: solid 1px #0b4fb9;
+}
+#head2 {
+    margin: 0;
+    padding: 0;
+}
+#map {
+    background-color: #0fe9ff;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+#f-list li{
+    margin: 0;
+    padding: 0;
+    border: solid 1px black;
+}

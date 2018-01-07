@@ -4,12 +4,13 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon bin/www"
+    "start": "npm run build",
+    "build": "nodemon bin/www",
+    "build:prod": "node bin/www"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "babel": "^6.23.0",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
     "debug": "^3.1.0",

@@ -1,15 +1,18 @@
 /* Importing bootstrap to the App */
 @import "../../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "../../node_modules/font-awesome/css/font-awesome.css";
+@import "./agency.css";
+@import "./style_dashboard.css";
 
 *{
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
 }
-body{
-    height: 100vh;
-    width: 100vw;
-}
-#page{
+.page{
     height: 100%;
+    /* height: 90vh; */
+}
+.navbar-inverse{
+    margin-bottom: 0;
 }

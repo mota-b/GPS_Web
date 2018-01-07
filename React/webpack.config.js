@@ -51,6 +51,13 @@ var config = {
                 use: {
                     loader: 'url-loader'
                 }
+            },{
+              test: /\.(jpe?g|png|gif|svg)$/i,
+              use: [{
+                    loader: 'url-loader?limit=10000'
+                }, {
+                    loader: 'img-loader'
+                }]
             }
         ],
     },
