@@ -1,4 +1,68 @@
-#log_reg{
-    background-color: #2ecc71; 
-    /* height: 90vh; */
+#main-content {
+  /* 
+  overflow: hidden;  */
+}
+#main-content ul {
+  position: absolute;
+  z-index: 2000;
+  margin-top: 90px;
+  padding-left: 42px;
+  float: right;
+  display: inline-block;
+  list-style: none; 
+}
+#main-content ul div {
+  padding: 0; 
+}
+#main-content ul li {
+  font-family: "Lato";
+  font-size: 20px;
+  margin: 15px;
+  display: inline; 
+}
+#main-content ul li:hover {
+  border-bottom: 2px solid white; 
+}
+#main-content ul li a {
+  color: white;
+  text-decoration: none; 
+}
+#main-content .left-1, #main-content .left-2, #main-content .right-1, #main-content .right-2 {
+  height: 100vh;
+  padding-top: 50px; 
+}
+#main-content .left-1, #main-content .right-2 {
+  padding-top: 20%; 
+}
+#main-content .left-1, #main-content .right-1 {
+  background-color: #1bbc9b; 
+}
+#main-content .left-2, #main-content .right-2 {
+  background-color: #4bbfc3; 
+}
+#main-content .sec-2 {
+  display: none; 
+}
+#main-content form {
+  margin-top: 30%; 
+}
+#main-content form div span {
+  width: 40px; 
+}
+
+.section{
+  padding-top: 0px;
+}
+
+.sec-1, .sec-2{
+  color: snow;
+}
+.sec-1 li , .sec-2 li{
+  font-family: "Lato";
+  font-size: 40px;
+  margin: 15px;
+  display: inline; 
+}
+.sec-1 li a, .sec-2 li a{
+  color: white;
 }

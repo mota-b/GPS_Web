@@ -5,11 +5,12 @@ import {Footer} from '../Footer/Footer.jsx'
 
 import "./Home.css";
 export class Home extends Component{
+    
     render (){
         return (    
             <div className="page" id="home">
                 
-                <NavBar/>
+                <NavBar path={this.props.history.location.pathname}/>
 
                 <div id="head" className="section">
 

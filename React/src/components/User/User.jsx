@@ -8,7 +8,7 @@ export class User extends Component{
         return (    
                 
             <div className="page" id="user">
-                <NavBar/>
+                <NavBar path={this.props.history.location.pathname}/>
 
                 <div className="section">
                 
